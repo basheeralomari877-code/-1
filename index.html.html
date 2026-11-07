@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطة الإنجاز المكثف 21 يوماً - التوجيهي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        math: '#3b82f6',
+                        arabic: '#10b981',
+                        islamic: '#f59e0b',
+                        history: '#ec4899'
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header Section -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-indigo-600/20 text-indigo-400 rounded-xl border border-indigo-500/30">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-white tracking-wide">معسكر الإنجاز المكثف (21 يوماً)</h1>
+                    <p class="text-xs text-slate-400">خطة إنقاذ التوجيهي - ختم 154+ ساعة في 3 أسابيع</p>
+                </div>
+            </div>
+
+            <!-- Global Target Indicator -->
+            <div class="flex items-center gap-4 bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700/60">
+                <div class="text-left">
+                    <div class="text-xs text-slate-400">التقدم التراكمي الإجمالي</div>
+                    <div class="text-sm font-bold text-indigo-400" id="header-progress-text">0 / 154 ساعة (0%)</div>
+                </div>
+                <div class="w-12 h-12 relative flex items-center justify-center">
+                    <svg class="w-12 h-12">
+                        <circle class="text-slate-700" stroke-width="4" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24"/>
+                        <circle id="header-progress-circle" class="text-indigo-500 progress-ring-circle" stroke-width="4" stroke-dasharray="125.6" stroke-dashoffset="125.6" stroke-linecap="round" stroke="currentColor" fill="transparent" r="20" cx="24" cy="24"/>
+                    </svg>
+                    <i data-lucide="trophy" class="w-4 h-4 text-amber-400 absolute"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-6 w-full space-y-6 flex-grow">
+
+        <!-- Banner & Quick Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-gradient-to-br from-blue-900/40 to-slate-900 border border-blue-500/30 p-4 rounded-2xl flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider">الرياضيات</span>
+                    <div class="text-xl font-black text-white mt-1" id="math-hours-display">0 / 100 س</div>
+                    <div class="text-xs text-slate-400 mt-1">يومياً: 4س و 45د</div>
+                </div>
+                <div class="p-3 bg-blue-500/20 text-blue-400 rounded-xl">
+                    <i data-lucide="calculator" class="w-6 h-6"></i>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-emerald-900/40 to-slate-900 border border-emerald-500/30 p-4 rounded-2xl flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">اللغة العربية</span>
+                    <div class="text-xl font-black text-white mt-1" id="arabic-hours-display">0 / 30 س</div>
+                    <div class="text-xs text-slate-400 mt-1">يومياً: 1س و 25د</div>
+                </div>
+                <div class="p-3 bg-emerald-500/20 text-emerald-400 rounded-xl">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-amber-900/40 to-slate-900 border border-amber-500/30 p-4 rounded-2xl flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider">التربية الإسلامية</span>
+                    <div class="text-xl font-black text-white mt-1" id="islamic-hours-display">0 / 12 س</div>
+                    <div class="text-xs text-slate-400 mt-1">يومياً: 35 دقيقة</div>
+                </div>
+                <div class="p-3 bg-amber-500/20 text-amber-400 rounded-xl">
+                    <i data-lucide="heart" class="w-6 h-6"></i>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-pink-900/40 to-slate-900 border border-pink-500/30 p-4 rounded-2xl flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-semibold text-pink-400 uppercase tracking-wider">تاريخ الأردن</span>
+                    <div class="text-xl font-black text-white mt-1" id="history-hours-display">0 / 11.9 س</div>
+                    <div class="text-xs text-slate-400 mt-1">يومياً: 35 دقيقة</div>
+                </div>
+                <div class="p-3 bg-pink-500/20 text-pink-400 rounded-xl">
+                    <i data-lucide="landmark" class="w-6 h-6"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Section (Timer + Controls) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Timer Left Column (7 cols) -->
+            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-24 -left-24 w-60 h-60 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Timer Top Controls -->
+                <div>
+                    <div class="flex flex-wrap justify-between items-center gap-2 mb-6">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700" id="timer-status-badge">
+                                <span class="w-2 h-2 rounded-full bg-slate-500 ml-2" id="status-dot"></span>
+                                جاهز لبدء الجلسة
+                            </span>
+                        </div>
+                        <!-- Session Choice -->
+                        <div class="flex bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
+                            <button id="btn-mode-study" onclick="setTimerMode('study')" class="px-3 py-1.5 rounded-lg font-medium transition-all bg-indigo-600 text-white">دراسة (50د)</button>
+                            <button id="btn-mode-break" onclick="setTimerMode('break')" class="px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white">استراحة (10د)</button>
+                        </div>
+                    </div>
+
+                    <!-- Subject Selection Buttons -->
+                    <div class="mb-8">
+                        <label class="block text-xs font-medium text-slate-400 mb-2">اختر المادة الحالية للجلسة:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <button onclick="selectSubject('math')" id="subj-btn-math" class="subj-btn p-3 rounded-2xl border border-blue-500/40 bg-blue-500/10 text-blue-300 font-bold text-sm flex items-center justify-center gap-2 transition-all">
+                                <i data-lucide="calculator" class="w-4 h-4"></i> رياضيات
+                            </button>
+                            <button onclick="selectSubject('arabic')" id="subj-btn-arabic" class="subj-btn p-3 rounded-2xl border border-slate-800 bg-slate-950 text-slate-400 font-bold text-sm flex items-center justify-center gap-2 transition-all hover:border-emerald-500/40">
+                                <i data-lucide="book-open" class="w-4 h-4"></i> عربي
+                            </button>
+                            <button onclick="selectSubject('islamic')" id="subj-btn-islamic" class="subj-btn p-3 rounded-2xl border border-slate-800 bg-slate-950 text-slate-400 font-bold text-sm flex items-center justify-center gap-2 transition-all hover:border-amber-500/40">
+                                <i data-lucide="heart" class="w-4 h-4"></i> إسلامية
+                            </button>
+                            <button onclick="selectSubject('history')" id="subj-btn-history" class="subj-btn p-3 rounded-2xl border border-slate-800 bg-slate-950 text-slate-400 font-bold text-sm flex items-center justify-center gap-2 transition-all hover:border-pink-500/40">
+                                <i data-lucide="landmark" class="w-4 h-4"></i> تاريخ
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Timer Main Clock Display -->
+                    <div class="text-center py-6">
+                        <div class="text-7xl sm:text-8xl font-black font-mono tracking-tight text-white mb-2" id="timer-display">
+                            50:00
+                        </div>
+                        <p class="text-sm text-slate-400" id="timer-subtext">جلسة تركيز عالي لمادة: <span id="current-subject-name" class="text-blue-400 font-bold">الرياضيات</span></p>
+                    </div>
+                </div>
+
+                <!-- Timer Action Controls -->
+                <div class="space-y-4 mt-6">
+                    <div class="flex items-center justify-center gap-3">
+                        <button id="start-btn" onclick="toggleTimer()" class="flex-1 max-w-xs py-4 px-6 rounded-2xl font-black text-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="play" class="w-5 h-5 fill-current"></i> ابدأ الجلسة الان
+                        </button>
+                        <button onclick="resetTimer()" class="p-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all" title="إعادة ضبط">
+                            <i data-lucide="rotate-ccw" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Quick Add Manual Study Time -->
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800 text-xs text-slate-400">
+                        <span>إضافة سريعة وقت مجتاز:</span>
+                        <div class="flex gap-2">
+                            <button onclick="addManualMinutes(15)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700">+15 دقيقة</button>
+                            <button onclick="addManualMinutes(30)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700">+30 دقيقة</button>
+                            <button onclick="addManualMinutes(50)" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700">+50 دقيقة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Helpers & Reminders Controls Right Column (5 cols) -->
+            <div class="lg:col-span-5 space-y-6 flex flex-col justify-between">
+
+                <!-- Water & Smart Alert Toggles -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <i data-lucide="bell" class="w-5 h-5 text-indigo-400"></i> التنبيهات والتذكيرات الذكية
+                    </h3>
+
+                    <!-- Water Reminder Card -->
+                    <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 bg-cyan-500/10 text-cyan-400 rounded-xl">
+                                <i data-lucide="droplet" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-slate-200">تذكير شرب الماء</div>
+                                <div class="text-xs text-slate-400">تنبيه صوتي وبصري دوري</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <select id="water-interval" onchange="updateWaterInterval()" class="bg-slate-900 border border-slate-700 text-xs text-slate-300 rounded-lg p-1.5 focus:outline-none">
+                                <option value="30">كل 30 دقيقة</option>
+                                <option value="45">كل 45 دقيقة</option>
+                            </select>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="water-toggle" onchange="toggleWaterReminder()" class="sr-only peer">
+                                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Anti-Procrastination Alert -->
+                    <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 bg-rose-500/10 text-rose-400 rounded-xl">
+                                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-slate-200">منبه التكاسل والتأخير</div>
+                                <div class="text-xs text-slate-400">ينطلق إذا توقفت عن الدراسة 15د</div>
+                            </div>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="idle-toggle" onchange="toggleIdleAlert()" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-500"></div>
+                        </label>
+                    </div>
+
+                    <!-- Break Sound Switcher -->
+                    <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 bg-emerald-500/10 text-emerald-400 rounded-xl">
+                                <i data-lucide="coffee" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-slate-200">مدة الاستراحة</div>
+                                <div class="text-xs text-slate-400">تنبيه تلقائي عند الانتهاء</div>
+                            </div>
+                        </div>
+                        <select id="break-duration-select" onchange="changeBreakDuration()" class="bg-slate-900 border border-slate-700 text-xs text-slate-300 rounded-lg p-2">
+                            <option value="10">10 دقائق</option>
+                            <option value="15">15 دقيقة</option>
+                        </select>
+                    </div>
+
+                    <button onclick="testSound()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 border border-slate-700">
+                        <i data-lucide="volume-2" class="w-4 h-4"></i> تجربة صوت المنبه والتنبيهات
+                    </button>
+                </div>
+
+                <!-- Daily Target Progress Summary -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
+                    <h3 class="text-base font-bold text-white mb-4 flex items-center justify-between">
+                        <span>المستهدف اليومي الإجمالي</span>
+                        <span class="text-xs font-normal text-slate-400">7 س و 20 د صافي</span>
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-300">إنجاز اليوم الحالي</span>
+                                <span class="text-indigo-400 font-bold" id="today-progress-text">0 / 440 دقيقة</span>
+                            </div>
+                            <div class="w-full bg-slate-950 rounded-full h-3 overflow-hidden border border-slate-800">
+                                <div id="today-progress-bar" class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-full rounded-full transition-all" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400">أقل مستهدف للوصول لـ 250 ساعة: 8 إلى 9 ساعات يومياً شاملة الاستراحات.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 21-Day Interactive Schedule & Progress Board -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-6">
+            <div class="flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-5 h-5 text-indigo-400"></i> الجدول الزمني اليومي (21 يوماً / 3 أسابيع)
+                    </h2>
+                    <p class="text-xs text-slate-400">قم بتعليم الأيام المكتملة لمتابعة ختم خطة الساعات 154+</p>
+                </div>
+                <button onclick="resetAllProgress()" class="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 border border-rose-500/20 px-3 py-1.5 rounded-lg bg-rose-500/10">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> تصفير البيانات والبدء من جديد
+                </button>
+            </div>
+
+            <!-- Days Grid (21 Days divided into 3 Weeks) -->
+            <div class="space-y-6">
+                <!-- Week 1 -->
+                <div>
+                    <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span>الأسبوع الأول (الأيام 1 - 7)</span>
+                        <div class="h-px bg-slate-800 flex-1"></div>
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3" id="week-1-grid"></div>
+                </div>
+
+                <!-- Week 2 -->
+                <div>
+                    <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span>الأسبوع الثاني (الأيام 8 - 14)</span>
+                        <div class="h-px bg-slate-800 flex-1"></div>
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3" id="week-2-grid"></div>
+                </div>
+
+                <!-- Week 3 -->
+                <div>
+                    <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span>الأسبوع الثالث (الأيام 15 - 21)</span>
+                        <div class="h-px bg-slate-800 flex-1"></div>
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3" id="week-3-grid"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Notifications Banner -->
+    <div id="alert-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 max-w-md w-full rounded-3xl p-6 text-center space-y-4 shadow-2xl animate-bounce-once">
+            <div id="modal-icon-container" class="w-16 h-16 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto">
+                <i data-lucide="bell" class="w-8 h-8" id="modal-icon"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-white" id="modal-title">تنبيه!</h3>
+            <p class="text-sm text-slate-300" id="modal-message">حان الوقت للعودة للدراسة.</p>
+            <button onclick="closeModal()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all">
+                حسناً، فهمت
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-4 text-center text-xs text-slate-500">
+        منصة التجهيز المكثف للتوجيهي - 21 يوماً لإنجاز الـ 154-250 ساعة بالكامل
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // Subject Target Data Configuration (Minutes)
+        const TARGETS = {
+            math: { name: "الرياضيات", totalMin: 100 * 60, color: "blue", dailyMin: 285 }, // 100 hrs
+            arabic: { name: "اللغة العربية", totalMin: 30 * 60, color: "emerald", dailyMin: 85 }, // 30 hrs
+            islamic: { name: "التربية الإسلامية", totalMin: 12 * 60, color: "amber", dailyMin: 35 }, // 12 hrs
+            history: { name: "تاريخ الأردن", totalMin: 715, color: "pink", dailyMin: 35 } // 11h 55m = 715 mins
+        };
+
+        // Total Cumulative Target: 154 Hours (9240 mins)
+        const CUMULATIVE_TARGET_MIN = 9240;
+        const CAP_MAX_MIN = 250 * 60; // 250 Hours optional cap
+
+        // App State
+        let state = {
+            currentSubject: 'math',
+            timerMode: 'study', // 'study' or 'break'
+            timeLeft: 50 * 60, // seconds
+            isRunning: false,
+            breakDuration: 10, // 10 or 15 mins
+            waterReminder: false,
+            waterInterval: 30, // mins
+            idleAlert: true,
+            lastActivityTime: Date.now(),
+            loggedMinutes: {
+                math: 0,
+                arabic: 0,
+                islamic: 0,
+                history: 0
+            },
+            todayMinutes: 0,
+            completedDays: []
+        };
+
+        let timerInterval = null;
+        let idleInterval = null;
+        let waterIntervalTimer = null;
+        let audioCtx = null;
+
+        // Initialize App
+        window.onload = function() {
+            lucide.createIcons();
+            loadState();
+            updateUI();
+            renderDaysGrid();
+
+            // Start Idle Detector Interval (Checks every 1 min)
+            idleInterval = setInterval(checkIdleTime, 60000);
+
+            // User Interaction to Init Web Audio API
+            document.body.addEventListener('click', initAudioContext, { once: true });
+        };
+
+        // Initialize Web Audio API safely
+        function initAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // Web Audio Sound Generator (No external URLs needed)
+        function playSound(type = 'chime') {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'breakEnd') {
+                    // Two-tone wake alert
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.2); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.4); // G5
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+                    osc.start(now);
+                    osc.stop(now + 0.8);
+                } else if (type === 'water') {
+                    // Water drop pitch sweep effect
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.25);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else if (type === 'idle') {
+                    // Warning sound
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.setValueAtTime(180, now + 0.2);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                    osc.start(now);
+                    osc.stop(now + 0.5);
+                } else {
+                    // Default Chime
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(587.33, now); // D5
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                }
+            } catch (e) {
+                console.log("Audio play error:", e);
+            }
+        }
+
+        // Test Sound Button
+        function testSound() {
+            playSound('breakEnd');
+            showModal('اختبار الصوت', 'صوت التنبيه يشتغل بنجاح! جاهز للتذكيرات.', 'volume-2');
+        }
+
+        // Select Subject
+        function selectSubject(subjKey) {
+            state.currentSubject = subjKey;
+            document.querySelectorAll('.subj-btn').forEach(btn => {
+                btn.className = "subj-btn p-3 rounded-2xl border border-slate-800 bg-slate-950 text-slate-400 font-bold text-sm flex items-center justify-center gap-2 transition-all hover:border-slate-700";
+            });
+
+            const activeBtn = document.getElementById(`subj-btn-${subjKey}`);
+            if (subjKey === 'math') activeBtn.className = "subj-btn p-3 rounded-2xl border border-blue-500/40 bg-blue-500/10 text-blue-300 font-bold text-sm flex items-center justify-center gap-2 transition-all";
+            if (subjKey === 'arabic') activeBtn.className = "subj-btn p-3 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 font-bold text-sm flex items-center justify-center gap-2 transition-all";
+            if (subjKey === 'islamic') activeBtn.className = "subj-btn p-3 rounded-2xl border border-amber-500/40 bg-amber-500/10 text-amber-300 font-bold text-sm flex items-center justify-center gap-2 transition-all";
+            if (subjKey === 'history') activeBtn.className = "subj-btn p-3 rounded-2xl border border-pink-500/40 bg-pink-500/10 text-pink-300 font-bold text-sm flex items-center justify-center gap-2 transition-all";
+
+            document.getElementById('current-subject-name').innerText = TARGETS[subjKey].name;
+            document.getElementById('current-subject-name').className = `font-bold text-${TARGETS[subjKey].color}-400`;
+            saveState();
+        }
+
+        // Toggle Study / Break Timer Modes
+        function setTimerMode(mode) {
+            state.timerMode = mode;
+            state.isRunning = false;
+            clearInterval(timerInterval);
+
+            const studyBtn = document.getElementById('btn-mode-study');
+            const breakBtn = document.getElementById('btn-mode-break');
+
+            if (mode === 'study') {
+                state.timeLeft = 50 * 60;
+                studyBtn.className = "px-3 py-1.5 rounded-lg font-medium transition-all bg-indigo-600 text-white";
+                breakBtn.className = "px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white";
+                document.getElementById('timer-subtext').innerHTML = `جلسة تركيز عالي لمادة: <span id="current-subject-name" class="font-bold text-${TARGETS[state.currentSubject].color}-400">${TARGETS[state.currentSubject].name}</span>`;
+            } else {
+                state.timeLeft = state.breakDuration * 60;
+                breakBtn.className = "px-3 py-1.5 rounded-lg font-medium transition-all bg-emerald-600 text-white";
+                studyBtn.className = "px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white";
+                document.getElementById('timer-subtext').innerText = `فترة استراحة وتجديد النشاط (${state.breakDuration} دقائق)`;
+            }
+
+            updateTimerDisplay();
+            updateStartButton();
+        }
+
+        // Start / Pause Timer
+        function toggleTimer() {
+            initAudioContext();
+            state.lastActivityTime = Date.now();
+
+            if (state.isRunning) {
+                clearInterval(timerInterval);
+                state.isRunning = false;
+            } else {
+                state.isRunning = true;
+                timerInterval = setInterval(() => {
+                    if (state.timeLeft > 0) {
+                        state.timeLeft--;
+                        updateTimerDisplay();
+                    } else {
+                        onTimerComplete();
+                    }
+                }, 1000);
+            }
+            updateStartButton();
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            state.isRunning = false;
+            state.timeLeft = (state.timerMode === 'study') ? 50 * 60 : state.breakDuration * 60;
+            updateTimerDisplay();
+            updateStartButton();
+        }
+
+        function updateStartButton() {
+            const btn = document.getElementById('start-btn');
+            const dot = document.getElementById('status-dot');
+            const badge = document.getElementById('timer-status-badge');
+
+            if (state.isRunning) {
+                btn.innerHTML = `<i data-lucide="pause" class="w-5 h-5 fill-current"></i> إيقاف مؤقت`;
+                btn.className = "flex-1 max-w-xs py-4 px-6 rounded-2xl font-black text-lg bg-amber-600 hover:bg-amber-500 text-white shadow-lg shadow-amber-600/30 transition-all flex items-center justify-center gap-2";
+                badge.childNodes[2].textContent = " المؤقت قيد التشغيل";
+                dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-ping ml-2";
+            } else {
+                btn.innerHTML = `<i data-lucide="play" class="w-5 h-5 fill-current"></i> ابدأ الجلسة الان`;
+                btn.className = "flex-1 max-w-xs py-4 px-6 rounded-2xl font-black text-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2";
+                badge.childNodes[2].textContent = " متوقف حالياً";
+                dot.className = "w-2 h-2 rounded-full bg-slate-500 ml-2";
+            }
+            lucide.createIcons();
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(state.timeLeft / 60);
+            const secs = state.timeLeft % 60;
+            document.getElementById('timer-display').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Timer Finished Event
+        function onTimerComplete() {
+            clearInterval(timerInterval);
+            state.isRunning = false;
+
+            if (state.timerMode === 'study') {
+                // Completed 50 mins study session
+                addStudyTime(state.currentSubject, 50);
+                playSound('breakEnd');
+                showModal('انتهت جلسة الدراسة! 👏', `عاش! أتممت 50 دقيقة في مادة ${TARGETS[state.currentSubject].name}. استرح الآن لمدة ${state.breakDuration} دقائق.`, 'coffee');
+                setTimerMode('break');
+            } else {
+                // Completed Break
+                playSound('breakEnd');
+                showModal('انتهت الاستراحة! 🔔', 'انتهت مدة الاستراحة، عد إلى الدراسة بهمة عالية لتكمل مستهدفك اليومي.', 'zap');
+                setTimerMode('study');
+            }
+        }
+
+        // Add study time manually or from session
+        function addStudyTime(subjectKey, minutes) {
+            state.loggedMinutes[subjectKey] += minutes;
+            state.todayMinutes += minutes;
+            saveState();
+            updateUI();
+        }
+
+        function addManualMinutes(mins) {
+            addStudyTime(state.currentSubject, mins);
+            showModal('تم إدخال الوقت!', `تمت إضافة ${mins} دقيقة إلى إنجازك في ${TARGETS[state.currentSubject].name}.`, 'check-circle');
+        }
+
+        // Update UI Displays & Progress Bars
+        function updateUI() {
+            // Update Subject Displayed Hours
+            document.getElementById('math-hours-display').innerText = `${(state.loggedMinutes.math / 60).toFixed(1)} / 100 س`;
+            document.getElementById('arabic-hours-display').innerText = `${(state.loggedMinutes.arabic / 60).toFixed(1)} / 30 س`;
+            document.getElementById('islamic-hours-display').innerText = `${(state.loggedMinutes.islamic / 60).toFixed(1)} / 12 س`;
+            document.getElementById('history-hours-display').innerText = `${(state.loggedMinutes.history / 60).toFixed(1)} / 11.9 س`;
+
+            // Calculate Cumulative Progress
+            const totalLoggedMin = Object.values(state.loggedMinutes).reduce((a, b) => a + b, 0);
+            const totalHours = (totalLoggedMin / 60).toFixed(1);
+            const overallPercent = Math.min(100, Math.round((totalLoggedMin / CUMULATIVE_TARGET_MIN) * 100));
+
+            document.getElementById('header-progress-text').innerText = `${totalHours} / 154 ساعة (${overallPercent}%)`;
+
+            // Update Progress Circle
+            const circle = document.getElementById('header-progress-circle');
+            const circumference = 125.6;
+            const offset = circumference - (overallPercent / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+
+            // Update Today Progress (Daily Target: 440 mins ~ 7h 20m active)
+            const dailyPercent = Math.min(100, Math.round((state.todayMinutes / 440) * 100));
+            document.getElementById('today-progress-text').innerText = `${state.todayMinutes} / 440 دقيقة (${dailyPercent}%)`;
+            document.getElementById('today-progress-bar').style.width = `${dailyPercent}%`;
+        }
+
+        // Render 21 Days Grid
+        function renderDaysGrid() {
+            const week1 = document.getElementById('week-1-grid');
+            const week2 = document.getElementById('week-2-grid');
+            const week3 = document.getElementById('week-3-grid');
+
+            week1.innerHTML = ''; week2.innerHTML = ''; week3.innerHTML = '';
+
+            for (let day = 1; day <= 21; day++) {
+                const isChecked = state.completedDays.includes(day);
+                const dayCard = document.createElement('div');
+                dayCard.className = `p-3 rounded-2xl border text-center cursor-pointer transition-all flex flex-col justify-between ${
+                    isChecked 
+                    ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300' 
+                    : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                }`;
+
+                dayCard.onclick = () => toggleDayCompletion(day);
+                dayCard.innerHTML = `
+                    <div class="flex justify-between items-center text-xs mb-1">
+                        <span class="font-bold">اليوم ${day}</span>
+                        <i data-lucide="${isChecked ? 'check-circle-2' : 'circle'}" class="w-4 h-4 ${isChecked ? 'text-emerald-400' : 'text-slate-600'}"></i>
+                    </div>
+                    <div class="text-[10px] text-slate-500 mt-1">7س 20د صافي</div>
+                `;
+
+                if (day <= 7) week1.appendChild(dayCard);
+                else if (day <= 14) week2.appendChild(dayCard);
+                else week3.appendChild(dayCard);
+            }
+            lucide.createIcons();
+        }
+
+        function toggleDayCompletion(day) {
+            if (state.completedDays.includes(day)) {
+                state.completedDays = state.completedDays.filter(d => d !== day);
+            } else {
+                state.completedDays.push(day);
+            }
+            saveState();
+            renderDaysGrid();
+        }
+
+        // Reminders Options
+        function changeBreakDuration() {
+            state.breakDuration = parseInt(document.getElementById('break-duration-select').value);
+            if (state.timerMode === 'break' && !state.isRunning) {
+                state.timeLeft = state.breakDuration * 60;
+                updateTimerDisplay();
+            }
+            saveState();
+        }
+
+        function toggleWaterReminder() {
+            state.waterReminder = document.getElementById('water-toggle').checked;
+            if (state.waterReminder) {
+                startWaterTimer();
+                showModal('تفكير شرب الماء', 'تم تفعيل تذكير الماء بنجاح! سيتم تنبيهك دورياً.', 'droplet');
+            } else {
+                clearInterval(waterIntervalTimer);
+            }
+            saveState();
+        }
+
+        function updateWaterInterval() {
+            state.waterInterval = parseInt(document.getElementById('water-interval').value);
+            if (state.waterReminder) {
+                startWaterTimer();
+            }
+            saveState();
+        }
+
+        function startWaterTimer() {
+            clearInterval(waterIntervalTimer);
+            waterIntervalTimer = setInterval(() => {
+                if (state.waterReminder) {
+                    playSound('water');
+                    showModal('تذكير بالماء 💧', 'جسمك وعقلك بحاجة إلى الماء للتركيز! اشرب كوب ماء الآن.', 'droplet');
+                }
+            }, state.waterInterval * 60 * 1000);
+        }
+
+        function toggleIdleAlert() {
+            state.idleAlert = document.getElementById('idle-toggle').checked;
+            saveState();
+        }
+
+        // Anti-Procrastination / Idle Check (Fires if inactive for >15 mins without timer running)
+        function checkIdleTime() {
+            if (state.idleAlert && !state.isRunning) {
+                const idleMins = (Date.now() - state.lastActivityTime) / (1000 * 60);
+                if (idleMins >= 15) {
+                    playSound('idle');
+                    showModal('تنبيه التأخير والتكاسل! ⚠️', 'لاحظنا توقفك عن الدراسة لأكثر من 15 دقيقة دون تشغيل المؤقت! قم ببدء الجلسة فوراً لتستمر في المنافسة والختم.', 'alert-triangle');
+                    state.lastActivityTime = Date.now(); // reset
+                }
+            }
+        }
+
+        // Helper Modal
+        function showModal(title, msg, iconName) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = msg;
+            document.getElementById('modal-icon').setAttribute('data-lucide', iconName);
+            document.getElementById('alert-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('alert-modal').classList.add('hidden');
+        }
+
+        // LocalStorage Logic
+        function saveState() {
+            localStorage.setItem('tawjihi_study_app_state', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const saved = localStorage.getItem('tawjihi_study_app_state');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    state = { ...state, ...parsed };
+                    // Set inputs
+                    document.getElementById('water-toggle').checked = state.waterReminder || false;
+                    document.getElementById('water-interval').value = state.waterInterval || 30;
+                    document.getElementById('idle-toggle').checked = state.idleAlert !== undefined ? state.idleAlert : true;
+                    document.getElementById('break-duration-select').value = state.breakDuration || 10;
+                    if (state.waterReminder) startWaterTimer();
+                } catch (e) {
+                    console.error("Failed to restore state", e);
+                }
+            }
+        }
+
+        function resetAllProgress() {
+            if (confirm("هل أنت تأكد من رغبتك في تصفير جميع الإحصائيات والساعات المسجلة والبدء من جديد؟")) {
+                localStorage.removeItem('tawjihi_study_app_state');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
